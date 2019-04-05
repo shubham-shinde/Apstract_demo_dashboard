@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import NavBar from './components/dashboard/NavBar';
+import Create from './components/dashboard/create';
+import Market from './components/dashboard/market';
+import Cart from './components/dashboard/edit';
+import Setting from './components/dashboard/play'
+import Analytics from './components/dashboard/analytics';
+import MainSideBar from './components/dashboard/MainSideBar';
+import { BrowserRouter, Route } from 'react-router-dom';
+import './css/dash.css'
+import './css/bootstrap.css';
+import './css/App.css';
+import './vendor/fontawesome-free/css/all.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar/>
+          <div  style={{display:'flex'}}>
+            <MainSideBar/>
+            <Route exact path='/add' component={Create}/>
+            <Route path='/market' component={Market}/>
+            <Route path='/cart' component={Cart}/>
+            <Route path='/setting' component={Setting}/>
+            <Route path='/analytics' component={Analytics}/>
+          </div>
+          {/* <HomePage/> */}
+        </div>
+      </BrowserRouter>
     );
   }
 }
